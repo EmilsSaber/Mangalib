@@ -6,69 +6,59 @@
     android:layout_height="match_parent"
     tools:context=".presentation.ui.activity.ui.home.HomeFragment">
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPager"
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/search_bar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="72dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <SearchView
+            android:id="@+id/search_id"
+            android:layout_width="268dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="42dp"
+            android:background="@drawable/bg_search_view"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="@id/search_bar"
+            app:layout_constraintEnd_toStartOf="@id/ganre_id"
+            app:layout_constraintStart_toStartOf="@id/search_bar"
+            app:layout_constraintTop_toTopOf="@id/search_bar" />
+
+        <ImageView
+            android:id="@+id/ganre_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="22dp"
+            android:background="@drawable/genre_icon"
+            app:layout_constraintBottom_toBottomOf="@id/search_id"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/search_id"
+            app:layout_constraintTop_toTopOf="@id/search_id" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_bar">
+
         <androidx.viewpager.widget.PagerTitleStrip
             android:layout_width="match_parent"
-            android:layout_height="12dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="top"
             android:background="@color/purple_500"
             android:padding="13dp" />
     </androidx.viewpager.widget.ViewPager>
 
-    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--        android:id="@+id/search_bar"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="72dp"-->
-<!--        android:layout_marginTop="4dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent">-->
-
-<!--        <SearchView-->
-<!--            android:id="@+id/search_id"-->
-<!--            android:layout_width="268dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="42dp"-->
-<!--            android:background="@drawable/bg_search_view"-->
-<!--            android:clickable="true"-->
-<!--            app:layout_constraintBottom_toBottomOf="@id/search_bar"-->
-<!--            app:layout_constraintEnd_toStartOf="@id/ganre_id"-->
-<!--            app:layout_constraintStart_toStartOf="@id/search_bar"-->
-<!--            app:layout_constraintTop_toTopOf="@id/search_bar" />-->
-
-<!--        <ImageView-->
-<!--            android:id="@+id/ganre_id"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginHorizontal="22dp"-->
-<!--            android:background="@drawable/genre_icon"-->
-<!--            app:layout_constraintBottom_toBottomOf="@id/search_id"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toEndOf="@id/search_id"-->
-<!--            app:layout_constraintTop_toTopOf="@id/search_id" />-->
-<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_marginHorizontal="16dp"-->
-<!--        android:layout_marginTop="12dp"-->
-<!--        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/search_bar"-->
-<!--        app:layout_constraintVertical_bias="1.0"-->
-<!--        app:spanCount="2"-->
-<!--        tools:listitem="@layout/item_manga" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
