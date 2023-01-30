@@ -1,16 +1,10 @@
-package kg.example.mangalib
-
-data class MangalibModel(
-    val count: Int,
-    val next: String,
-    val previous: Any,
-    val results: List<Result>
-)
+package kg.example.mangalib.data.remote.modelApi
 
 data class Result(
     val chapters_quantity: Int,
     val created_at: String,
     val description: String,
+    val dir: String,
     val en_name: String,
     val genre: List<Int>,
     val id: Int,

@@ -1,5 +1,6 @@
 package kg.example.mangalib.utils
 
+import android.R
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -22,7 +23,11 @@ class ViewPagerAdapter (fm: FragmentManager): FragmentPagerAdapter(fm){
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
-        return "Tab " + (position + 1)
+        when (position) {
+            0 -> return "Вся манга"
+            1 -> return "Топ 100"
+        }
+        return ""
     }
 
 }

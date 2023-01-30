@@ -71,4 +71,17 @@ dependencies {
 
     //ViewPager
     implementation("androidx.viewpager2:viewpager2:1.0.0")
+
+    //fragment
+     implementation "androidx.fragment:fragment-ktx:1.5.4"
+
+    //life
+    implementation "androidx.lifecycle:lifecycle-runtime:2.5.1"
+    implementation "androidx.lifecycle:lifecycle-common-java8:2.5.1"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.5.1"
+
+
+    //coil
+    implementation("io.coil-kt:coil:2.2.2")
 }
