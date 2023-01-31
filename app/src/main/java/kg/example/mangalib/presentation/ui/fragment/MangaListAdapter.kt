@@ -35,8 +35,7 @@ class MangaListAdapter: RecyclerView.Adapter<MangaListAdapter.MangaListViewHolde
    inner class MangaListViewHolder(private val binding: ItemMangaBinding):RecyclerView.ViewHolder(binding.root) {
        fun bind(list: Result) {
            binding.image.load(list.image)
-           binding.title.text = list.ru_name
-           binding.title.setTextColor(Color.BLACK)
+//           binding.title.text = list.ru_name
        }
    }
 
