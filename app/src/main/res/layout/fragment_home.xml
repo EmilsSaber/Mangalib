@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="22dp"
-            android:background="@drawable/genre_icon"
+
             app:layout_constraintBottom_toBottomOf="@id/search_id"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/search_id"
