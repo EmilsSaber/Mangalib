@@ -8,10 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import kg.example.mangalib.data.remote.modelApi.Result
 import kg.example.mangalib.databinding.ItemMangaBinding
+import kg.example.mangalib.domein.modelApi.DResult
 
 class MangaListAdapter: RecyclerView.Adapter<MangaListAdapter.MangaListViewHolder>()  {
 
-     var list = arrayListOf<Result>()
+     var list = arrayListOf<DResult>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MangaListViewHolder {
         return MangaListViewHolder(ItemMangaBinding.inflate(LayoutInflater.from(parent.context),parent, false))
@@ -24,16 +25,13 @@ class MangaListAdapter: RecyclerView.Adapter<MangaListAdapter.MangaListViewHolde
     override fun getItemCount(): Int {
         return list.size
     }
-    fun add(mangalist:  List<Result>) {
-//        this.list = mangalist as ArrayList<Result>
-//        Log.d("ololo","s ArrayList<Item>")
-//        mangalist.let { list.add(it) }
-//        notifyDataSetChanged()
-        list.addAll(mangalist)
+    fun add(mangalist:  List<DResult>) {
+        list = mangalist as ArrayList<DResult>
         notifyDataSetChanged()
     }
+
    inner class MangaListViewHolder(private val binding: ItemMangaBinding):RecyclerView.ViewHolder(binding.root) {
-       fun bind(list: Result) {
+       fun bind(list: DResult) {
            binding.image.load(list.image)
 //           binding.title.text = list.ru_name
        }

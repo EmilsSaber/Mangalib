@@ -1,13 +1,17 @@
 package kg.example.mangalib.presentation.ui.fragment
+import kg.example.mangalib.domein.modelApi.DResult
+import kg.example.mangalib.domein.usecase.GetAllMangaUseCase
+import kg.example.mangalib.domein.utils.UiState
+import kg.example.mangalib.presentation.base.BaseViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import kg.example.mangalib.data.remote.modelApi.Result
-import kg.example.mangalib.utils.App
 
+class AllMangaViewModel(private val getAllMangaUseCase: GetAllMangaUseCase): BaseViewModel(){
+    private val _getAllManga = MutableStateFlow<UiState<List<DResult>>>(UiState.Empty())
+    val getAllManga = _getAllManga.asStateFlow()
 
-class AllMangaViewModel: ViewModel(){
-    fun getMangaList(): MutableLiveData<List<Result>> {
-       return App().repository.getMangaLists()
+    fun getAllManga() {
+        getAllMangaUseCase.getAllManga().collectFlow(_getAllManga)
     }
 }

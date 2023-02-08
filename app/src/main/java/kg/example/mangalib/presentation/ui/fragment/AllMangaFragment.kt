@@ -7,34 +7,46 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import kg.example.mangalib.data.remote.modelApi.Result
 import kg.example.mangalib.databinding.FragmentAllMangaBinding
+import kg.example.mangalib.presentation.base.BaseFragment
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class AllMangaFragment : Fragment() {
+class AllMangaFragment : BaseFragment<FragmentAllMangaBinding>() {
+    private val viewModel: AllMangaViewModel by viewModel()
+    private lateinit var adapter: MangaListAdapter
 
-    private lateinit var binding: FragmentAllMangaBinding
-    //private lateinit var viewModel: AllMangaViewModel
-    private var adapter = MangaListAdapter()
-    private var list = arrayListOf<Result>()
-    private val viewModel: AllMangaViewModel by viewModels()
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        binding = FragmentAllMangaBinding.inflate(layoutInflater)
-        return binding.root
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        adapter = MangaListAdapter()
     }
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-        viewModel.getMangaList().observe(viewLifecycleOwner){
-            Toast.makeText(context, "kokoko", Toast.LENGTH_SHORT).show()
-            Log.e("jojo", "onViewCreated:", )
-            binding.recyclerManga.adapter = adapter
-             adapter.add(it)
-        }
+    override fun inflate(layoutInflater: LayoutInflater): FragmentAllMangaBinding {
+        return FragmentAllMangaBinding.inflate(layoutInflater)
     }
+
+    override fun initListener() {
+
+        viewModel.getAllManga()
+        viewModel.getAllManga.collectState(
+            onLoading = {
+                binding.progressBar.isVisible = true
+            },
+            Error = {
+                Log.e("ololo", "error: " )
+                binding.progressBar.isVisible = false
+
+            },
+            onSuccess = {
+                binding.progressBar.isVisible = false
+                binding.recyclerManga.adapter =adapter
+                adapter.add(it)
+                Toast.makeText(requireContext(),"success",Toast.LENGTH_SHORT).show()
+                Log.e("ololo", "success: " )
+            })
+    }
+
 }
 
