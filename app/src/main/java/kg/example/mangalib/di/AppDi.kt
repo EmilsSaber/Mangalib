@@ -10,7 +10,6 @@ val appModule = module {
         TopMangaViewModel(get())
     }
     viewModel {
-        AllMangaViewModel(get())
-
+        AllMangaViewModel(get(),get())
     }
 }

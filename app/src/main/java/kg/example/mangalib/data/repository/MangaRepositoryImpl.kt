@@ -30,4 +30,15 @@ class MangaRepositoryImpl(private val apiSer: ApiServise) : MangaRepository {
             emit(Resourse.Error(ioException.localizedMessage ?: "Fatal, i don't know"))
         }
     }
+
+    override fun getSearchManga(search:String): Flow<Resourse<List<DResult>>> = flow {
+        emit(Resourse.Loading())
+        try {
+            val api = apiSer.getMangaSearch(search).map {it.toDResult()}
+            emit(Resourse.Success(api))
+        } catch (ioException: IOException) {
+            emit(Resourse.Error(ioException.localizedMessage ?: "Fatal, i don't know"))
+        }
+    }
+
 }

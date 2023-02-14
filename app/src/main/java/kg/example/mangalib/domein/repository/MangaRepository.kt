@@ -8,4 +8,6 @@ interface MangaRepository {
     fun getTopManga():Flow<Resourse<List<DResult>>>
     fun getAllManga():Flow<Resourse<List<DResult>>>
 
+    fun getSearchManga(search:String):Flow<Resourse<List<DResult>>>
+
 }

@@ -13,10 +13,10 @@ import androidx.lifecycle.ViewModelProvider
 import kg.example.mangalib.data.remote.modelApi.Result
 import kg.example.mangalib.databinding.FragmentAllMangaBinding
 import kg.example.mangalib.presentation.base.BaseFragment
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
-
 class AllMangaFragment : BaseFragment<FragmentAllMangaBinding>() {
-    private val viewModel: AllMangaViewModel by viewModel()
+    private val viewModel: AllMangaViewModel by sharedViewModel()
     private lateinit var adapter: MangaListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +46,27 @@ class AllMangaFragment : BaseFragment<FragmentAllMangaBinding>() {
                 Toast.makeText(requireContext(),"success",Toast.LENGTH_SHORT).show()
                 Log.e("ololo", "success: " )
             })
+
+
+        viewModel.getSearchManga.collectState(
+
+            onLoading = {
+                binding.progressBar.isVisible = true
+            },
+            Error = {
+                Log.e("ololo", "error: " )
+                binding.progressBar.isVisible = false
+
+            },
+            onSuccess = {
+                binding.progressBar.isVisible = false
+                binding.recyclerManga.adapter =adapter
+                adapter.add(it)
+                Toast.makeText(requireContext(),"success",Toast.LENGTH_SHORT).show()
+                Log.e("ololo", "success: " )
+            }
+
+        )
     }
 
 }
